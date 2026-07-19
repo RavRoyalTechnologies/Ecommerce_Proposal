@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RavRoyal Technology - Premium Quotation</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --gold:#D4AF37;
+    --gold-light:#F5D76E;
+    --navy:#06152F;
+    --navy-2:#0B1F3A;
+    --white:#FFFFFF;
+    --gray:#F4F7FB;
+    --text:#1F2937;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#06152F 0%, #0B1F3A 100%);
+    min-height:100vh;
+    padding:30px 15px;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    background:var(--white);
+    border-radius:24px;
+    overflow:hidden;
+    box-shadow:0 25px 60px rgba(0,0,0,0.35);
+}
+
+/* HERO */
+.hero{
+    background:radial-gradient(circle at top, #102B57 0%, #06152F 70%);
+    color:white;
+    padding:50px 40px;
+    position:relative;
+}
+
+.hero::before{
+    content:'';
+    position:absolute;
+    top:-50px;
+    right:-50px;
+    width:250px;
+    height:250px;
+    background:rgba(212,175,55,0.08);
+    border-radius:50%;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+
+.logo{
+    width:120px;
+    height:120px;
+    object-fit:contain;
+    display:block;
+    margin:0 auto 20px;
+    filter:drop-shadow(0 5px 15px rgba(212,175,55,0.4));
+}
+
+.company-name{
+    text-align:center;
+    font-size:2.3rem;
+    font-weight:800;
+    color:var(--gold);
+    margin-bottom:10px;
+    letter-spacing:1px;
+}
+
+.tagline{
+    text-align:center;
+    font-size:1.05rem;
+    color:#E5E7EB;
+    margin-bottom:25px;
+}
+
+.contact{
+    text-align:center;
+    font-size:0.95rem;
+    line-height:1.8;
+    color:#D1D5DB;
+}
+
+/* CONTENT */
+.content{
+    padding:40px;
+}
+
+.section-title{
+    font-size:1.8rem;
+    color:var(--navy);
+    margin-bottom:25px;
+    position:relative;
+    padding-left:18px;
+}
+
+.section-title::before{
+    content:'';
+    position:absolute;
+    left:0;
+    top:5px;
+    width:6px;
+    height:34px;
+    background:linear-gradient(to bottom,var(--gold),var(--gold-light));
+    border-radius:10px;
+}
+
+/* PRICING */
+.pricing-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:22px;
+    margin-bottom:35px;
+}
+
+.price-card{
+    background:linear-gradient(180deg,#FFFFFF 0%, #FAFBFF 100%);
+    border:2px solid #E5E7EB;
+    border-radius:20px;
+    padding:28px;
+    text-align:center;
+    transition:all .3s ease;
+    position:relative;
+    overflow:hidden;
+}
+
+.price-card:hover{
+    transform:translateY(-6px);
+    border-color:var(--gold);
+    box-shadow:0 15px 35px rgba(212,175,55,0.18);
+}
+
+.price-card.featured{
+    border-color:var(--gold);
+    background:linear-gradient(180deg,#FFFDF5 0%, #FFFFFF 100%);
+}
+
+.badge{
+    position:absolute;
+    top:15px;
+    right:15px;
+    background:var(--gold);
+    color:var(--navy);
+    padding:6px 12px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:700;
+}
+
+.price-title{
+    font-size:1rem;
+    color:#6B7280;
+    margin-bottom:12px;
+}
+
+.price{
+    font-size:2.2rem;
+    font-weight:800;
+    color:var(--navy);
+    margin-bottom:8px;
+}
+
+.price small{
+    font-size:1rem;
+    color:#6B7280;
+}
+
+.price-desc{
+    color:#4B5563;
+    font-size:0.95rem;
+}
+
+/* TIMELINE */
+.timeline{
+    background:#F8FAFC;
+    border-radius:18px;
+    padding:24px;
+    margin-bottom:35px;
+    border:1px solid #E5E7EB;
+}
+
+.timeline h3{
+    color:var(--navy);
+    margin-bottom:15px;
+}
+
+.timeline-item{
+    display:flex;
+    gap:15px;
+    margin-bottom:15px;
+}
+
+.timeline-dot{
+    width:16px;
+    height:16px;
+    background:var(--gold);
+    border-radius:50%;
+    margin-top:5px;
+    flex-shrink:0;
+}
+
+/* MODULES */
+.modules{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:15px;
+    margin-bottom:35px;
+}
+
+.module{
+    background:#FFFFFF;
+    border:1px solid #E5E7EB;
+    border-radius:16px;
+    padding:18px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    transition:.25s;
+}
+
+.module:hover{
+    border-color:var(--gold);
+    transform:translateY(-3px);
+}
+
+.check{
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    background:linear-gradient(135deg,var(--gold),var(--gold-light));
+    color:var(--navy);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800;
+}
+
+/* REQUIREMENT TABLE */
+.requirement-box{
+    background:#FFFFFF;
+    border:1px solid #E5E7EB;
+    border-radius:18px;
+    overflow:hidden;
+    margin-bottom:35px;
+}
+
+.req-header{
+    background:var(--navy);
+    color:white;
+    padding:18px 22px;
+    font-weight:700;
+    font-size:1.1rem;
+}
+
+.req-row{
+    display:grid;
+    grid-template-columns:70px 1fr 160px;
+    align-items:center;
+    padding:16px 22px;
+    border-bottom:1px solid #EEF2F7;
+}
+
+.req-row:nth-child(even){
+    background:#FAFBFF;
+}
+
+.req-row:last-child{
+    border-bottom:none;
+}
+
+.req-row input{
+    width:20px;
+    height:20px;
+    accent-color:var(--gold);
+}
+
+.req-price{
+    text-align:right;
+    font-weight:700;
+    color:var(--navy);
+}
+
+/* FORM */
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+    margin-bottom:25px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:600;
+    color:var(--navy);
+}
+
+.form-group input,
+.form-group textarea{
+    width:100%;
+    padding:14px 16px;
+    border:1px solid #D1D5DB;
+    border-radius:12px;
+    font-size:14px;
+    transition:.25s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+    outline:none;
+    border-color:var(--gold);
+    box-shadow:0 0 0 4px rgba(212,175,55,0.15);
+}
+
+.form-group textarea{
+    min-height:120px;
+    resize:vertical;
+}
+
+/* SIGNATURES */
+.signatures{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    margin-top:40px;
+}
+
+.sign{
+    text-align:center;
+}
+
+.sign-line{
+    border-top:2px solid #111827;
+    margin-top:60px;
+    padding-top:12px;
+    font-weight:700;
+    color:var(--navy);
+}
+
+/* ACTION BUTTON */
+.actions{
+    text-align:center;
+    margin:35px 0 10px;
+}
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:linear-gradient(135deg,var(--gold),var(--gold-light));
+    color:var(--navy);
+    border:none;
+    padding:16px 28px;
+    border-radius:14px;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+    box-shadow:0 10px 25px rgba(212,175,55,0.28);
+    transition:.25s;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+}
+
+/* FOOTER */
+.footer{
+    background:var(--navy);
+    color:#D1D5DB;
+    text-align:center;
+    padding:24px;
+}
+
+.footer strong{
+    color:var(--gold);
+}
+
+/* PRINT */
+@media print{
+    body{
+        background:white;
+        padding:0;
+    }
+
+    .container{
+        box-shadow:none;
+        border-radius:0;
+    }
+
+    .actions{
+        display:none;
+    }
+
+    .hero{
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
+
+@media(max-width:768px){
+    .content{
+        padding:25px;
+    }
+
+    .company-name{
+        font-size:1.7rem;
+    }
+
+    .req-row{
+        grid-template-columns:50px 1fr;
+        gap:10px;
+    }
+
+    .req-price{
+        grid-column:2;
+        text-align:left;
+    }
+
+    .signatures{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+
+            <!-- Replace with your logo file -->
+            <img src="ravroyal-icon.png" alt="RavRoyal Logo" class="logo">
+
+            <h1 class="company-name">RAVROYAL TECHNOLOGY PRIVATE LIMITED</h1>
+
+            <p class="tagline">
+                Integrated IT | Compliance | Logistics Solutions
+            </p>
+
+            <div class="contact">
+                Mohan Tribeca, Near K.M. Agrawal College, Kalyan West, Mumbai, Maharashtra - 421301<br>
+                📞 +91 9685204269 &nbsp; | &nbsp; ✉ info@ravroyal.com &nbsp; | &nbsp; 🌐 www.ravroyal.com
+            </div>
+
+        </div>
+    </section>
+
+    <div class="content">
+
+        <!-- QUOTATION -->
+        <h2 class="section-title">E-Commerce Website Development Proposal</h2>
+
+        <p style="margin-bottom:25px;color:#4B5563;">
+            This proposal outlines the complete development, deployment, and maintenance of a modern
+            e-commerce platform powered by <strong>Next.js + Laravel 12 + Filament Admin Panel</strong>,
+            optimized for high performance, SEO, payment integration, logistics automation, and future scalability.
+        </p>
+
+        <!-- PRICING CARDS -->
+        <div class="pricing-grid">
+
+            <div class="price-card featured">
+                <div class="badge">START</div>
+                <div class="price-title">Initial Setup</div>
+                <div class="price">₹16,000</div>
+                <div class="price-desc">
+                    Complete website design, development, deployment, domain, SSL, email setup, admin panel, and customer store.
+                </div>
+            </div>
+
+            <div class="price-card">
+                <div class="price-title">Monthly Support</div>
+                <div class="price">₹3,000 <small>/month</small></div>
+                <div class="price-desc">
+                    Server monitoring, backups, security updates, bug fixes, and technical support.
+                </div>
+            </div>
+
+            <div class="price-card">
+                <div class="price-title">Delivery Timeline</div>
+                <div class="price">7 Days</div>
+                <div class="price-desc">
+                    Full production-ready website delivered within 7 days after initial payment confirmation.
+                </div>
+            </div>
+
+        </div>
+
+        <!-- TIMELINE -->
+        <div class="timeline">
+
+            <h3>Delivery & Customization Policy</h3>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div><strong>Day 1-7:</strong> Complete website development and deployment.</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div><strong>First Month:</strong> Unlimited small customizations and support are provided FREE.</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div><strong>After First Month:</strong> Small modifications remain free whenever possible; major new features or modules will be charged separately after approval.</div>
+            </div>
+
+        </div>
+
+        <!-- INCLUDED MODULES -->
+        <h2 class="section-title">Modules Included in Base Package</h2>
+
+        <div class="modules">
+
+            <div class="module"><div class="check">✓</div><span>Responsive Customer Website</span></div>
+            <div class="module"><div class="check">✓</div><span>Filament Admin Dashboard</span></div>
+            <div class="module"><div class="check">✓</div><span>Product Management</span></div>
+            <div class="module"><div class="check">✓</div><span>Inventory Management</span></div>
+            <div class="module"><div class="check">✓</div><span>Order Management</span></div>
+            <div class="module"><div class="check">✓</div><span>Customer Management</span></div>
+            <div class="module"><div class="check">✓</div><span>Razorpay Integration</span></div>
+            <div class="module"><div class="check">✓</div><span>Shiprocket Integration</span></div>
+            <div class="module"><div class="check">✓</div><span>WhatsApp Notifications</span></div>
+            <div class="module"><div class="check">✓</div><span>SEO Setup</span></div>
+            <div class="module"><div class="check">✓</div><span>Business Email Setup</span></div>
+            <div class="module"><div class="check">✓</div><span>SSL Security</span></div>
+
+        </div>
+
+        <!-- REQUIREMENTS -->
+        <h2 class="section-title">Business Requirement Selection</h2>
+
+        <div class="requirement-box">
+
+            <div class="req-header">Select the services you want to include</div>
+
+            <div class="req-row">
+                <input type="checkbox">
+                <div>Domain Registration (.com)</div>
+                <div class="req-price">Included</div>
+            </div>
+
+            <div class="req-row">
+                <input type="checkbox">
+                <div>Professional Business Email Setup</div>
+                <div class="req-price">Included</div>
+            </div>
+
+            <div class="req-row">
+                <input type="checkbox">
+                <div>Customer Panel</div>
+                <div class="req-price">Included</div>
+            </div>
+
+            <div class="req-row">
+                <input type="checkbox">
+                <div>Admin Panel</div>
+                <div class="req-price">Included</div>
+            </div>
+
+            <div class="req-row">
+                <input type="checkbox">
+                <div><strong>Multi-Vendor Marketplace</strong></div>
+                <div class="req-price">₹8,000</div>
+            </div>
+
+            <div class="req-row">
+                <input type="checkbox">
+                <div>WhatsApp Panel Integration</div>
+                <div class="req-price">₹2,500</div>
+            </div>
+
+            <div class="req-row">
+                <input type="checkbox">
+                <div>WhatsApp API Service Setup</div>
+                <div class="req-price">₹3,500</div>
+            </div>
+
+            <div class="req-row">
+                <input type="checkbox">
+                <div>Stripe Payment Gateway</div>
+                <div class="req-price">₹3,000</div>
+            </div>
+
+            <div class="req-row">
+                <input type="checkbox">
+                <div>Delhivery Integration</div>
+                <div class="req-price">₹2,500</div>
+            </div>
+
+            <div class="req-row">
+                <input type="checkbox">
+                <div>Real-Time Order Tracking</div>
+                <div class="req-price">₹2,000</div>
+            </div>
+
+            <div class="req-row">
+                <input type="checkbox">
+                <div>Advanced SEO Package</div>
+                <div class="req-price">₹5,000</div>
+            </div>
+
+            <div class="req-row">
+                <input type="checkbox">
+                <div>Customer Wallet / Reward Points</div>
+                <div class="req-price">₹3,500</div>
+            </div>
+
+            <div class="req-row">
+                <input type="checkbox">
+                <div>Mobile App API Ready</div>
+                <div class="req-price">₹4,000</div>
+            </div>
+
+        </div>
+
+        <!-- CLIENT FORM -->
+        <h2 class="section-title">Client Information</h2>
+
+        <div class="form-grid">
+
+            <div class="form-group">
+                <label>Business Name</label>
+                <input type="text" placeholder="Enter business name">
+            </div>
+
+            <div class="form-group">
+                <label>Owner Name</label>
+                <input type="text" placeholder="Enter owner name">
+            </div>
+
+            <div class="form-group">
+                <label>Mobile Number</label>
+                <input type="text" placeholder="Enter mobile number">
+            </div>
+
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" placeholder="Enter email address">
+            </div>
+
+            <div class="form-group">
+                <label>Preferred Domain Name</label>
+                <input type="text" placeholder="example: yourbrand.com">
+            </div>
+
+            <div class="form-group">
+                <label>Expected Order Volume</label>
+                <input type="text" placeholder="example: 100-200 orders/day">
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label>Special Business Requirements</label>
+            <textarea placeholder="Describe any custom features, reports, integrations, WhatsApp requirements, logistics workflow, vendor requirements, or other business needs."></textarea>
+        </div>
+
+        <!-- SIGNATURES -->
+        <div class="signatures">
+
+            <div class="sign">
+                <div class="sign-line">Client Signature</div>
+                <p style="margin-top:10px;color:#6B7280;">Date: ____________</p>
+            </div>
+
+            <div class="sign">
+                <div class="sign-line">Authorized Signature</div>
+                <p style="margin-top:10px;color:#6B7280;">RavRoyal Technology Pvt. Ltd.</p>
+            </div>
+
+        </div>
+
+        <!-- PRINT BUTTON -->
+        <div class="actions">
+            <button class="btn" onclick="window.print()">
+                🖨 Print / Save as PDF
+            </button>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <strong>RAVROYAL TECHNOLOGY PRIVATE LIMITED</strong><br>
+        Integrated IT | Compliance | Logistics Solutions
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RavRoyal Technology - Quotation</title>
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:Arial, Helvetica, sans-serif;
+    }
+    body{
+        background:#f4f7fb;
+        color:#222;
+        line-height:1.5;
+    }
+    .container{
+        max-width:1000px;
+        margin:20px auto;
+        background:#fff;
+        border-radius:12px;
+        overflow:hidden;
+        box-shadow:0 5px 20px rgba(0,0,0,0.1);
+    }
+    .header{
+        background:#081a3a;
+        color:white;
+        padding:30px;
+        text-align:center;
+    }
+    .header img{
+        width:120px;
+        margin-bottom:15px;
+    }
+    .header h1{
+        font-size:34px;
+        letter-spacing:1px;
+        margin-bottom:8px;
+    }
+    .header p{
+        font-size:14px;
+        opacity:0.95;
+    }
+    .section{
+        padding:30px;
+    }
+    .title{
+        color:#081a3a;
+        font-size:26px;
+        margin-bottom:20px;
+        border-bottom:3px solid #d4af37;
+        padding-bottom:10px;
+    }
+    .pricing{
+        width:100%;
+        border-collapse:collapse;
+        margin:20px 0;
+    }
+    .pricing th{
+        background:#081a3a;
+        color:white;
+        padding:14px;
+        text-align:left;
+    }
+    .pricing td{
+        padding:14px;
+        border-bottom:1px solid #e5e7eb;
+    }
+    .pricing tr:nth-child(even){
+        background:#f9fbff;
+    }
+    .highlight{
+        background:#fff8e1;
+        border-left:5px solid #d4af37;
+        padding:18px;
+        margin:20px 0;
+        border-radius:6px;
+    }
+    .modules{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+        margin-top:15px;
+    }
+    .module{
+        background:#f8fafc;
+        padding:12px;
+        border-radius:6px;
+        border:1px solid #e5e7eb;
+    }
+    .requirement-table{
+        width:100%;
+        border-collapse:collapse;
+        margin-top:20px;
+    }
+    .requirement-table th{
+        background:#081a3a;
+        color:white;
+        padding:12px;
+        text-align:left;
+    }
+    .requirement-table td{
+        padding:12px;
+        border:1px solid #e5e7eb;
+    }
+    .requirement-table tr:nth-child(even){
+        background:#f9fbff;
+    }
+    .form-group{
+        margin-bottom:18px;
+    }
+    .form-group label{
+        display:block;
+        font-weight:bold;
+        margin-bottom:6px;
+        color:#081a3a;
+    }
+    .form-group input,
+    .form-group textarea{
+        width:100%;
+        padding:12px;
+        border:1px solid #cbd5e1;
+        border-radius:6px;
+        font-size:14px;
+    }
+    .signatures{
+        display:flex;
+        justify-content:space-between;
+        margin-top:50px;
+        gap:40px;
+    }
+    .sign{
+        flex:1;
+        text-align:center;
+    }
+    .line{
+        border-top:2px solid #111827;
+        margin-top:50px;
+        padding-top:10px;
+        font-weight:bold;
+    }
+    .footer{
+        background:#081a3a;
+        color:white;
+        text-align:center;
+        padding:20px;
+        font-size:14px;
+    }
+    @media print{
+        body{
+            background:white;
+        }
+        .container{
+            box-shadow:none;
+            margin:0;
+        }
+        .header{
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .pricing th,
+        .requirement-table th{
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <!-- Replace logo.png with your logo file -->
+        <img src="ravroyal-icon.png" alt="RavRoyal Logo">
+
+        <h1>RAVROYAL TECHNOLOGY PRIVATE LIMITED</h1>
+
+        <p>
+            Mohan Tribeca, Near K.M. Agrawal College, Kalyan West, Mumbai, Maharashtra - 421301
+        </p>
+
+        <p>
+            Phone: +91 9685204269 | Email: info@ravroyal.com | Website: www.ravroyal.com
+        </p>
+    </div>
+
+    <!-- QUOTATION -->
+    <div class="section">
+
+        <h2 class="title">E-Commerce Website Development Quotation</h2>
+
+        <p>
+            This quotation is submitted by <strong>RavRoyal Technology Private Limited</strong>
+            for the design, development, deployment, and maintenance of a professional
+            e-commerce website with admin panel, customer panel, payment integration,
+            logistics integration, WhatsApp integration, SEO setup, and future support services.
+        </p>
+
+        <table class="pricing">
+            <tr>
+                <th>Service / Item</th>
+                <th>Amount (INR)</th>
+            </tr>
+            <tr>
+                <td><strong>Initial Website Development & Setup</strong></td>
+                <td><strong>₹16,000</strong></td>
+            </tr>
+            <tr>
+                <td>Monthly Maintenance & Technical Support</td>
+                <td>₹3,000 / Month</td>
+            </tr>
+            <tr>
+                <td>.com Domain Registration (1 Year)</td>
+                <td>Included</td>
+            </tr>
+            <tr>
+                <td>SSL Certificate (1 Year)</td>
+                <td>Included</td>
+            </tr>
+            <tr>
+                <td>Professional Business Email Setup</td>
+                <td>Included</td>
+            </tr>
+            <tr>
+                <td>Vercel Frontend Deployment Setup</td>
+                <td>Included</td>
+            </tr>
+            <tr>
+                <td>Laravel VPS Deployment Setup</td>
+                <td>Included</td>
+            </tr>
+            <tr>
+                <td>Basic SEO Configuration</td>
+                <td>Included</td>
+            </tr>
+        </table>
+
+        <div class="highlight">
+            <h3 style="color:#081a3a; margin-bottom:10px;">Delivery & Support Terms</h3>
+
+            <p><strong>• Delivery Time:</strong> Complete website will be delivered within <strong>7 days</strong> after receiving the initial payment.</p>
+
+            <p><strong>• First Month Support:</strong> Unlimited small customizations and support are provided <strong>FREE during the first month</strong> after delivery.</p>
+
+            <p><strong>• After First Month:</strong> Small modifications remain free whenever possible. Major new features, modules, or large customizations will be charged separately after client approval.</p>
+
+            <p><strong>• Monthly Support (₹3,000):</strong> Includes server monitoring, backups, bug fixes, security updates, performance optimization, and technical assistance.</p>
+        </div>
+
+        <h3 style="color:#081a3a; margin-top:25px;">Modules Included in Base Package</h3>
+
+        <div class="modules">
+            <div class="module">✔ Responsive Customer Website</div>
+            <div class="module">✔ Filament Admin Dashboard</div>
+            <div class="module">✔ Product Management</div>
+            <div class="module">✔ Category Management</div>
+            <div class="module">✔ Inventory Management</div>
+            <div class="module">✔ Order Management</div>
+            <div class="module">✔ Customer Management</div>
+            <div class="module">✔ Coupon & Discount System</div>
+            <div class="module">✔ Payment Gateway Integration</div>
+            <div class="module">✔ Logistics Integration</div>
+            <div class="module">✔ WhatsApp Notifications</div>
+            <div class="module">✔ Basic SEO Setup</div>
+            <div class="module">✔ Business Email Configuration</div>
+            <div class="module">✔ Secure SSL Website</div>
+        </div>
+    </div>
+
+    <!-- REQUIREMENT FORM -->
+    <div class="section">
+
+        <h2 class="title">Business Requirement Gathering Form</h2>
+
+        <p style="margin-bottom:15px;">
+            Please tick (✓) the services you want to include in your website.
+        </p>
+
+        <table class="requirement-table">
+            <tr>
+                <th style="width:80px;">Select</th>
+                <th>Requirement</th>
+                <th style="width:180px;">Price</th>
+            </tr>
+
+            <tr><td><input type="checkbox"></td><td>Domain Registration (.com)</td><td>Included</td></tr>
+            <tr><td><input type="checkbox"></td><td>Business Email Setup</td><td>Included</td></tr>
+            <tr><td><input type="checkbox"></td><td>Customer Panel</td><td>Included</td></tr>
+            <tr><td><input type="checkbox"></td><td>Admin Panel</td><td>Included</td></tr>
+            <tr><td><input type="checkbox"></td><td>Single Vendor Store</td><td>Included</td></tr>
+
+            <tr><td><input type="checkbox"></td><td><strong>Multi-Vendor Marketplace</strong></td><td><strong>₹8,000</strong></td></tr>
+
+            <tr><td><input type="checkbox"></td><td>WhatsApp Panel Integration</td><td>₹2,500</td></tr>
+            <tr><td><input type="checkbox"></td><td>WhatsApp API Service Setup</td><td>₹3,500</td></tr>
+
+            <tr><td><input type="checkbox"></td><td>Razorpay Payment Gateway</td><td>₹2,000</td></tr>
+            <tr><td><input type="checkbox"></td><td>Stripe Payment Gateway</td><td>₹3,000</td></tr>
+            <tr><td><input type="checkbox"></td><td>Cash on Delivery (COD)</td><td>Included</td></tr>
+
+            <tr><td><input type="checkbox"></td><td>Shiprocket Integration</td><td>₹2,500</td></tr>
+            <tr><td><input type="checkbox"></td><td>Delhivery Integration</td><td>₹2,500</td></tr>
+            <tr><td><input type="checkbox"></td><td>Real-Time Order Tracking</td><td>₹2,000</td></tr>
+
+            <tr><td><input type="checkbox"></td><td>GST Invoice System</td><td>₹1,500</td></tr>
+
+            <tr><td><input type="checkbox"></td><td>Basic SEO Optimization</td><td>Included</td></tr>
+            <tr><td><input type="checkbox"></td><td>Advanced SEO Package</td><td>₹5,000</td></tr>
+            <tr><td><input type="checkbox"></td><td>Google Analytics & Search Console</td><td>₹1,000</td></tr>
+
+            <tr><td><input type="checkbox"></td><td>Product Import from Excel/CSV</td><td>₹1,500</td></tr>
+            <tr><td><input type="checkbox"></td><td>Bulk Order Processing</td><td>₹2,000</td></tr>
+            <tr><td><input type="checkbox"></td><td>Customer Wallet / Reward Points</td><td>₹3,500</td></tr>
+            <tr><td><input type="checkbox"></td><td>Wishlist & Product Reviews</td><td>₹1,500</td></tr>
+            <tr><td><input type="checkbox"></td><td>Mobile App API Ready</td><td>₹4,000</td></tr>
+        </table>
+
+        <!-- CLIENT FORM -->
+        <h3 style="color:#081a3a; margin-top:35px;">Client Information</h3>
+
+        <div class="form-group">
+            <label>Business Name</label>
+            <input type="text">
+        </div>
+
+        <div class="form-group">
+            <label>Owner Name</label>
+            <input type="text">
+        </div>
+
+        <div class="form-group">
+            <label>Mobile Number</label>
+            <input type="text">
+        </div>
+
+        <div class="form-group">
+            <label>Email Address</label>
+            <input type="email">
+        </div>
+
+        <div class="form-group">
+            <label>Preferred Domain Name</label>
+            <input type="text" placeholder="example: yourbrand.com">
+        </div>
+
+        <div class="form-group">
+            <label>Expected Monthly Orders</label>
+            <input type="text" placeholder="example: 100-200 orders/day">
+        </div>
+
+        <div class="form-group">
+            <label>Special Business Requirements</label>
+            <textarea rows="5" placeholder="Describe any special features, integrations, reports, or custom requirements."></textarea>
+        </div>
+
+        <!-- SIGNATURES -->
+        <div class="signatures">
+            <div class="sign">
+                <div class="line">Client Signature</div>
+                <p>Date: ____________</p>
+            </div>
+
+            <div class="sign">
+                <div class="line">Authorized Signature</div>
+                <p>RavRoyal Technology Pvt. Ltd.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <strong>RAVROYAL TECHNOLOGY PRIVATE LIMITED</strong><br>
+        Integrated IT | Compliance | Logistics Solutions
+    </div>
+
+</div>
+
+</body>
+</html>
