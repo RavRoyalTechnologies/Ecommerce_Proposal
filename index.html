@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RavRoyal Technology - Quotation</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<!-- PDF LIBRARIES -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+
+<body>
+
+<div class="container" id="quotationContainer">
+
+    <!-- HEADER -->
+    <div class="header">
+
+        <div class="header-wrapper">
+
+            <img src="logo.png" class="logo" alt="RavRoyal Logo">
+
+            <div class="company-info">
+
+                <h1>RAVROYAL TECHNOLOGY PRIVATE LIMITED</h1>
+
+                <p>
+                    Integrated IT | Compliance | Logistics Solutions
+                </p>
+
+                <p>
+                    Mohan Tribeca, Near K.M. Agrawal College,
+                    Kalyan West, Mumbai, Maharashtra - 421301
+                </p>
+
+                <p>
+                    Phone: +91 9685204269 |
+                    Email: info@ravroyal.com |
+                    Website: www.ravroyal.com
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <h2 class="section-title">E-Commerce Website Development Proposal</h2>
+
+        <!-- PRICING -->
+        <div class="pricing-grid">
+
+            <div class="price-card featured">
+                <h3>Initial Setup & Development</h3>
+                <div class="price">₹16,000</div>
+                <p>Complete website, admin panel, deployment, domain, SSL, and email setup.</p>
+            </div>
+
+            <div class="price-card">
+                <h3>Monthly Maintenance</h3>
+                <div class="price">₹3,000</div>
+                <p>Server monitoring, backups, security updates, bug fixes, and support.</p>
+            </div>
+
+            <div class="price-card">
+                <h3>Delivery Timeline</h3>
+                <div class="price">7 Days</div>
+                <p>Production-ready website delivered within 7 days after payment.</p>
+            </div>
+
+        </div>
+
+        <!-- TERMS -->
+        <div class="terms">
+
+            <p><strong>✓ Delivery:</strong> Website delivered within <strong>7 days</strong>.</p>
+
+            <p><strong>✓ First Month:</strong> Unlimited small customizations are <strong>FREE</strong>.</p>
+
+            <p><strong>✓ After First Month:</strong> Major new features will be charged separately after approval.</p>
+
+        </div>
+
+        <!-- MODULES -->
+        <h2 class="section-title">Business Requirement Selection</h2>
+
+        <div class="module-table">
+
+            <div class="module-header">
+                <div>Select</div>
+                <div>Module</div>
+                <div>Price</div>
+            </div>
+
+            <div class="module-row">
+                <input type="checkbox" class="module-checkbox" data-price="0">
+                <div class="module-name">Domain Registration (.com)</div>
+                <div class="module-price">Included</div>
+            </div>
+
+            <div class="module-row">
+                <input type="checkbox" class="module-checkbox" data-price="0">
+                <div class="module-name">Business Email Setup</div>
+                <div class="module-price">Included</div>
+            </div>
+
+            <div class="module-row">
+                <input type="checkbox" class="module-checkbox" data-price="8000">
+                <div class="module-name">Multi-Vendor Marketplace</div>
+                <div class="module-price">₹8,000</div>
+            </div>
+
+            <div class="module-row">
+                <input type="checkbox" class="module-checkbox" data-price="2500">
+                <div class="module-name">WhatsApp Panel Integration</div>
+                <div class="module-price">₹2,500</div>
+            </div>
+
+            <div class="module-row">
+                <input type="checkbox" class="module-checkbox" data-price="3500">
+                <div class="module-name">WhatsApp API Service Setup</div>
+                <div class="module-price">₹3,500</div>
+            </div>
+
+            <div class="module-row">
+                <input type="checkbox" class="module-checkbox" data-price="3000">
+                <div class="module-name">Stripe Payment Gateway</div>
+                <div class="module-price">₹3,000</div>
+            </div>
+
+            <div class="module-row">
+                <input type="checkbox" class="module-checkbox" data-price="2500">
+                <div class="module-name">Delhivery Integration</div>
+                <div class="module-price">₹2,500</div>
+            </div>
+
+            <div class="module-row">
+                <input type="checkbox" class="module-checkbox" data-price="2000">
+                <div class="module-name">Real-Time Order Tracking</div>
+                <div class="module-price">₹2,000</div>
+            </div>
+
+            <div class="module-row">
+                <input type="checkbox" class="module-checkbox" data-price="5000">
+                <div class="module-name">Advanced SEO Package</div>
+                <div class="module-price">₹5,000</div>
+            </div>
+
+            <div class="module-row">
+                <input type="checkbox" class="module-checkbox" data-price="3500">
+                <div class="module-name">Customer Wallet / Reward Points</div>
+                <div class="module-price">₹3,500</div>
+            </div>
+
+            <div class="module-row">
+                <input type="checkbox" class="module-checkbox" data-price="4000">
+                <div class="module-name">Mobile App API Ready</div>
+                <div class="module-price">₹4,000</div>
+            </div>
+
+        </div>
+
+        <!-- TOTAL -->
+        <div class="total-box">
+            <span>Total Project Estimate</span>
+            <span id="selectedTotal">₹16,000</span>
+        </div>
+
+        <!-- CLIENT FORM -->
+        <h2 class="section-title">Client Information</h2>
+
+        <div class="form-grid">
+
+            <div class="form-group">
+                <label>Business Name</label>
+                <input type="text" id="businessName" name="businessName" placeholder="Enter business name">
+            </div>
+
+            <div class="form-group">
+                <label>Owner Name</label>
+                <input type="text" id="ownerName" name="ownerName" placeholder="Enter owner name">
+            </div>
+
+            <div class="form-group">
+                <label>Mobile Number</label>
+                <input type="text" id="mobileNumber" name="mobileNumber" placeholder="Enter mobile number">
+            </div>
+
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" id="emailAddress" name="emailAddress" placeholder="Enter email address">
+            </div>
+
+            <div class="form-group">
+                <label>Preferred Domain Name</label>
+                <input type="text" id="domainName" name="domainName" placeholder="example: yourbrand.com">
+            </div>
+
+            <div class="form-group">
+                <label>Expected Order Volume</label>
+                <input type="text" id="orderVolume" name="orderVolume" placeholder="example: 100-200 orders/day">
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label>Special Business Requirements</label>
+            <textarea id="requirements" name="requirements" placeholder="Describe custom features, reports, integrations, WhatsApp requirements, logistics workflow, vendor requirements, or other business needs."></textarea>
+        </div>
+
+        <!-- SIGNATURES -->
+        <div class="signatures">
+
+            <div class="sign">
+                <div class="sign-line">Client Signature</div>
+            </div>
+
+            <div class="sign">
+                <div class="sign-line">Authorized Signature - RavRoyal Technology Pvt. Ltd.</div>
+            </div>
+
+        </div>
+
+        <!-- ACTION BUTTONS -->
+        <div class="action-buttons">
+
+            <button class="btn btn-primary" id="whatsappBtn" onclick="saveAndWhatsApp()">
+                📄 Save PDF & Send WhatsApp
+            </button>
+
+            <button class="btn btn-secondary" onclick="savePDFOnly()">
+                🖨 Save PDF Only
+            </button>
+
+            <button class="btn btn-danger" onclick="clearForm()">
+                🗑 Clear Form
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+
+        <strong>RAVROYAL TECHNOLOGY PRIVATE LIMITED</strong><br>
+
+        Integrated IT | Compliance | Logistics Solutions
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
