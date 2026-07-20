@@ -60,20 +60,22 @@
 
             <div class="price-card featured">
                 <h3>Initial Setup & Development</h3>
-                <div class="price">₹16,000</div>
+                <input type="number" id="priceInput" placeholder="Enter amount" value="16000">
+                <div class="price" id="priceDisplay">₹16,000</div>
                 <p>Complete website, admin panel, deployment, domain, SSL, and email setup.</p>
             </div>
 
             <div class="price-card">
                 <h3>Monthly Maintenance</h3>
-                <div class="price">₹3,000</div>
-                <p>Server monitoring, backups, security updates, bug fixes, and support.</p>
+                <input type="number" id="priceInput" placeholder="Enter amount" value="6000">
+                <div class="price" id="priceDisplay2">₹6,000</div>
+                <p>Server monitoring, Inventory Sync Monitoring, Database Optimization, Plugin Vulnerability Patching,  backups, security updates, bug fixes, and support.</p>
             </div>
 
             <div class="price-card">
                 <h3>Delivery Timeline</h3>
-                <div class="price">7 Days</div>
-                <p>Production-ready website delivered within 7 days after payment.</p>
+                <div class="price">7-15 Days</div>
+                <p>Production-ready website delivered within 7-15 days after payment.</p>
             </div>
 
         </div>
@@ -81,7 +83,7 @@
         <!-- TERMS -->
         <div class="terms">
 
-            <p><strong>✓ Delivery:</strong> Website delivered within <strong>7 days</strong>.</p>
+            <p><strong>✓ Delivery:</strong> Website delivered within <strong>7-15 days</strong>.</p>
 
             <p><strong>✓ First Month:</strong> Unlimited small customizations are <strong>FREE</strong>.</p>
 
@@ -103,13 +105,57 @@
             <div class="module-row">
                 <input type="checkbox" class="module-checkbox" data-price="0">
                 <div class="module-name">Domain Registration (.com)</div>
-                <div class="module-price">Included</div>
+                <div class="module-price">Included  (Approx ₹5,000)</div>
+            </div>
+
+            <div class="module-row">
+                <input type="checkbox" class="module-checkbox" data-price="8000">
+                <div class="module-name">SSL Certificate</div>
+                <div class="module-price">₹ 8,000 /year</div>
             </div>
 
             <div class="module-row">
                 <input type="checkbox" class="module-checkbox" data-price="0">
-                <div class="module-name">Business Email Setup</div>
-                <div class="module-price">Included</div>
+                <div class="module-name">Business Email Setup (Premium Email Suite)</div>
+                <div class="">Google  Workspace MX Records Routing / DKIM & SPF Authentication</div>
+                <div class="module-price">Included (Approx ₹5,000)</div>
+            </div>
+
+            <div class="module-row">
+                <input type="checkbox" class="module-checkbox" data-price="0">
+                <div class="module-name">SEO & Visibilitys</div>
+                <div class=""><b>Technical SEO Foundation:</b>XML Sitemap Genration / Robots.txt Optimization / Schema Markup</div>
+                <div class=""><b>Speed Optimization:</b>Core web vitals Optimization / Image Webp Conversion / Lazy Loading</div>
+                <div class=""><b>Analytics Setup:</b>Google Analytics 4 (GA4) Integration / Google Search console setup</div>
+                <div class="module-price">Included (Approx ₹5,000)</div>
+            </div>
+
+            <div class="module-row">
+                <input type="checkbox" class="module-checkbox" data-price="0">
+                <div class="module-name">Premium Themes/Plugins</div>
+                <div class="">Enterprise Theme Licnse / Premium Builder Access (Elementor Pro/Divi)</div>
+                <div class="module-price">Included (Approx ₹5,000)</div>
+            </div>
+
+            <div class="module-row">
+                <input type="checkbox" class="module-checkbox" data-price="8000">
+                <div class="module-name">CDN Setup (Content Delivery Network)</div>
+                <span>Cloudfare Integrtion / Global Edge Caching</span>
+                <div class="module-price">₹8,000</div>
+            </div>
+
+            <div class="module-row">
+                <input type="checkbox" class="module-checkbox" data-price="8000">
+                <div class="module-name">Malwire Protection & Firewalls</div>
+                <span>Brute force Protection / DDOS Migration / Security Hardening</span>
+                <div class="module-price">₹8,000</div>
+            </div>
+
+            <div class="module-row">
+                <input type="checkbox" class="module-checkbox" data-price="8000">
+                <div class="module-name">Automated daily Backups</div>
+                <span>Disaster Recovery / Cloud Backup Redundancy</span>
+                <div class="module-price">₹8,000</div>
             </div>
 
             <div class="module-row">
@@ -127,12 +173,34 @@
             <div class="module-row">
                 <input type="checkbox" class="module-checkbox" data-price="3500">
                 <div class="module-name">WhatsApp API Service Setup</div>
+                <div class="">Automated Order confirmation & Shipping Alerts via Whatsapp API</div>
                 <div class="module-price">₹3,500</div>
             </div>
 
             <div class="module-row">
                 <input type="checkbox" class="module-checkbox" data-price="3000">
                 <div class="module-name">Stripe Payment Gateway</div>
+                <div class="module-price">₹3,000</div>
+            </div>
+            
+            <div class="module-row">
+                <input type="checkbox" class="module-checkbox" data-price="3000">
+                <div class="module-name">Payment Gateway Setup with auto Routing</div>
+                <span>Multi-Gateway Failover / Instant Settekment API</span>
+                <div class="module-price">₹3,000</div>
+            </div>
+            
+            <div class="module-row">
+                <input type="checkbox" class="module-checkbox" data-price="3000">
+                <div class="module-name">Abandoned  Cart Recovery</div>
+                <span>Cart Abandonment Funnel / Automated Rrtargeting Workflows</span>
+                <div class="module-price">₹3,000</div>
+            </div>
+            
+            <div class="module-row">
+                <input type="checkbox" class="module-checkbox" data-price="3000">
+                <div class="module-name">Advanced Product Search & Filters</div>
+                <span>Ajax Live Search / Elastic Search/ Multi Faceted Filtering</span>
                 <div class="module-price">₹3,000</div>
             </div>
 
@@ -163,6 +231,26 @@
             <div class="module-row">
                 <input type="checkbox" class="module-checkbox" data-price="4000">
                 <div class="module-name">Mobile App API Ready</div>
+                <div class="module-price">₹4,000</div>
+            </div>
+
+            <div class="module-row">
+                <input type="checkbox" class="module-checkbox" data-price="4000">
+                <div class="module-name">Marketing $ Tracking Tools</div>
+                <div class=""><b>Social Media Pixel Setup:</b> Meta Pixel (Facebook Pixel) with conversion API (CAPI) / Google Tag manager </div>
+                <div class="module-price">₹4,000</div>
+            </div>
+
+            <div class="module-row">
+                <input type="checkbox" class="module-checkbox" data-price="4000">
+                <div class="module-name">E-commerce Compliance & Legal Pages</div>
+                <div class="">GDPR & CCPA Compliance / Auto-genrated Refund & Shipping Policies</div>
+                <div class="module-price">₹4,000</div>
+            </div>
+
+            <div class="module-row">
+                <input type="checkbox" class="module-checkbox" data-price="4000">
+                <div class="module-name">Anty Fraud Risk Scoring / Bot Traffic Mitigation</div>
                 <div class="module-price">₹4,000</div>
             </div>
 
