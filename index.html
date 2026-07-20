@@ -638,7 +638,11 @@
                 🖨 Print / Save as PDF
             </button>
 
-            <button class="print-btn" id="downloadBtn" onclick="downloadProposalPDF()">
+            <button class="print-btn" id="downloadBtnold" style="display:none;" onclick="downloadProposalPDF()">
+                📄 Download Premium Proposal PDF
+            </button>
+
+            <button class="print-btn" id="downloadBtn" onclick="savePDFOnly()">
                 📄 Download Premium Proposal PDF
             </button>
         </div>
@@ -760,6 +764,260 @@
             business.replace(/[^a-zA-Z0-9]/g,'_') +
             '.pdf';
     
+        pdf.save(fileName);
+    }
+
+    // ==========================
+    // PREMIUM CLIENT PROPOSAL PDF
+    // ==========================
+    async function generatePDF() {
+    
+        const { jsPDF } = window.jspdf;
+    
+        // Get client info
+        const business =
+            document.getElementById('businessName').value || 'Client';
+    
+        const owner =
+            document.getElementById('ownerName').value || '';
+    
+        const mobile =
+            document.getElementById('mobileNumber').value || '';
+    
+        const email =
+            document.getElementById('emailAddress').value || '';
+    
+        // Get totals
+        const subtotal =
+            document.getElementById('subtotal')?.innerText || '₹0';
+    
+        const gst =
+            document.getElementById('gstAmount')?.innerText || '₹0';
+    
+        const grand =
+            document.getElementById('grandTotal')?.innerText ||
+            document.getElementById('selectedTotal').innerText;
+    
+        // Create PDF
+        const pdf = new jsPDF({
+            orientation: 'p',
+            unit: 'mm',
+            format: 'a4'
+        });
+    
+        const pageWidth = 210;
+        let y = 12;
+    
+        // ==========================
+        // HEADER (COMPACT)
+        // ==========================
+    
+        pdf.setFillColor(6, 21, 47);
+        pdf.rect(0, 0, pageWidth, 26, 'F');
+    
+        pdf.setTextColor(212, 175, 55);
+        pdf.setFont('helvetica', 'bold');
+        pdf.setFontSize(16);
+        pdf.text('RAVROYAL TECHNOLOGY PRIVATE LIMITED', 105, 10, { align: 'center' });
+    
+        pdf.setTextColor(255, 255, 255);
+        pdf.setFont('helvetica', 'normal');
+        pdf.setFontSize(8);
+        pdf.text('Integrated IT | Compliance | Logistics Solutions', 105, 16, { align: 'center' });
+        pdf.text('Mumbai, Maharashtra | +91 9685204269 | info@ravroyal.com', 105, 21, { align: 'center' });
+    
+        y = 34;
+    
+        // ==========================
+        // PROPOSAL TITLE
+        // ==========================
+    
+        pdf.setTextColor(6, 21, 47);
+        pdf.setFont('helvetica', 'bold');
+        pdf.setFontSize(15);
+        pdf.text('E-Commerce Website Development Proposal', 14, y);
+    
+        y += 10;
+    
+        // ==========================
+        // CLIENT INFO BOX
+        // ==========================
+    
+        pdf.setDrawColor(220, 220, 220);
+        pdf.roundedRect(14, y, 182, 24, 3, 3);
+    
+        pdf.setFontSize(9);
+        pdf.setFont('helvetica', 'bold');
+        pdf.text('Business:', 18, y + 7);
+        pdf.text('Owner:', 18, y + 15);
+    
+        pdf.setFont('helvetica', 'normal');
+        pdf.text(business, 38, y + 7);
+        pdf.text(owner, 38, y + 15);
+    
+        pdf.setFont('helvetica', 'bold');
+        pdf.text('Mobile:', 110, y + 7);
+        pdf.text('Email:', 110, y + 15);
+    
+        pdf.setFont('helvetica', 'normal');
+        pdf.text(mobile, 128, y + 7);
+        pdf.text(email, 128, y + 15);
+    
+        y += 34;
+    
+        // ==========================
+        // TABLE HEADER
+        // ==========================
+    
+        pdf.setFillColor(6, 21, 47);
+        pdf.rect(14, y, 182, 8, 'F');
+    
+        pdf.setTextColor(255, 255, 255);
+        pdf.setFont('helvetica', 'bold');
+        pdf.setFontSize(9);
+    
+        pdf.text('Module', 18, y + 5.5);
+        pdf.text('Price', 188, y + 5.5, { align: 'right' });
+    
+        y += 8;
+    
+        // ==========================
+        // ONLY CHECKED ROWS
+        // ==========================
+    
+        let rowCount = 0;
+    
+        document.querySelectorAll('.quotation-row').forEach(row => {
+    
+            const checkbox = row.querySelector('.item-check');
+            const freeBtn = row.querySelector('.free-btn');
+            const priceInput = row.querySelector('.item-price');
+    
+            // Skip unchecked rows
+            if (!checkbox.checked) return;
+    
+            const moduleName =
+                row.querySelector('strong')?.innerText ||
+                row.querySelector('.module-name')?.innerText ||
+                'Module';
+    
+            const isFree =
+                freeBtn?.classList.contains('active');
+    
+            const price = isFree
+                ? 'FREE'
+                : '₹' + Number(priceInput.value || 0).toLocaleString('en-IN');
+    
+            // Alternate row background
+            if (rowCount % 2 === 0) {
+                pdf.setFillColor(248, 250, 252);
+                pdf.rect(14, y, 182, 9, 'F');
+            }
+    
+            pdf.setTextColor(31, 41, 55);
+            pdf.setFont('helvetica', 'normal');
+            pdf.setFontSize(8.5);
+    
+            // Module name
+            pdf.text(moduleName.substring(0, 70), 18, y + 5.5);
+    
+            // Price
+            pdf.setFont('helvetica', 'bold');
+            pdf.text(price, 188, y + 5.5, { align: 'right' });
+    
+            // Row line
+            pdf.setDrawColor(235, 235, 235);
+            pdf.line(14, y + 9, 196, y + 9);
+    
+            y += 9;
+            rowCount++;
+        });
+    
+        // ==========================
+        // TOTALS BOX
+        // ==========================
+    
+        y += 6;
+    
+        pdf.setFillColor(250, 251, 255);
+        pdf.roundedRect(118, y, 78, 26, 3, 3, 'F');
+    
+        pdf.setTextColor(31, 41, 55);
+        pdf.setFont('helvetica', 'normal');
+        pdf.setFontSize(9);
+    
+        pdf.text('Subtotal', 124, y + 7);
+        pdf.text(subtotal, 190, y + 7, { align: 'right' });
+    
+        pdf.text('GST (18%)', 124, y + 14);
+        pdf.text(gst, 190, y + 14, { align: 'right' });
+    
+        pdf.setDrawColor(180, 180, 180);
+        pdf.line(122, y + 17, 192, y + 17);
+    
+        pdf.setFont('helvetica', 'bold');
+        pdf.setFontSize(11);
+        pdf.setTextColor(6, 21, 47);
+    
+        pdf.text('Grand Total', 124, y + 24);
+        pdf.text(grand, 190, y + 24, { align: 'right' });
+    
+        y += 42;
+    
+        // ==========================
+        // TERMS
+        // ==========================
+    
+        pdf.setFillColor(255, 248, 225);
+        pdf.roundedRect(14, y, 182, 18, 3, 3, 'F');
+    
+        pdf.setTextColor(55, 65, 81);
+        pdf.setFont('helvetica', 'normal');
+        pdf.setFontSize(8);
+    
+        pdf.text('• Delivery within 7-15 working days after payment confirmation.', 18, y + 6);
+        pdf.text('• First month small customizations are included free of charge.', 18, y + 12);
+    
+        y += 32;
+    
+        // ==========================
+        // SIGNATURES
+        // ==========================
+    
+        pdf.setDrawColor(120, 120, 120);
+    
+        pdf.line(24, y, 84, y);
+        pdf.line(126, y, 186, y);
+    
+        pdf.setFont('helvetica', 'bold');
+        pdf.setFontSize(8);
+        pdf.setTextColor(31, 41, 55);
+    
+        pdf.text('Client Signature', 54, y + 6, { align: 'center' });
+        pdf.text('Authorized Signature', 156, y + 6, { align: 'center' });
+    
+        // ==========================
+        // FOOTER
+        // ==========================
+    
+        pdf.setFillColor(6, 21, 47);
+        pdf.rect(0, 287, pageWidth, 10, 'F');
+    
+        pdf.setTextColor(255, 255, 255);
+        pdf.setFont('helvetica', 'normal');
+        pdf.setFontSize(7);
+    
+        pdf.text('RavRoyal Technology Pvt. Ltd. | Premium E-Commerce & ERP Solutions', 105, 293, { align: 'center' });
+        return pdf;
+    }
+
+    async function savePDFOnly() {
+        const business = document.getElementById('businessName').value || 'Proposal';
+        const pdf = await generatePDF();
+        const fileName =
+            'RavRoyal_Premium_Proposal_' +
+            business.replace(/[^a-zA-Z0-9]/g, '_') +
+            '.pdf';
         pdf.save(fileName);
     }
 </script>
