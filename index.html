@@ -956,12 +956,22 @@
         pdf.setTextColor(31, 41, 55);
         pdf.setFont('helvetica', 'normal');
         pdf.setFontSize(9);
-    
+
+        // Format amount without ₹ symbol
+        const subtotalText = 'INR ' + Number(subtotal).toLocaleString('en-IN');
+        const gstText = 'INR ' + Number(gst).toLocaleString('en-IN');
+        
         pdf.text('Subtotal', 124, y + 7);
-        pdf.text(subtotal, 190, y + 7, { align: 'right' });
-    
+        pdf.text(subtotalText, 190, y + 7, { align: 'right' });
+        
         pdf.text('GST (18%)', 124, y + 14);
-        pdf.text(gst, 190, y + 14, { align: 'right' });
+        pdf.text(gstText, 190, y + 14, { align: 'right' });
+        
+        // pdf.text('Subtotal', 124, y + 7);
+        // pdf.text(subtotal, 190, y + 7, { align: 'right' });
+    
+        // pdf.text('GST (18%)', 124, y + 14);
+        // pdf.text(gst, 190, y + 14, { align: 'right' });
     
         pdf.setDrawColor(180, 180, 180);
         pdf.line(122, y + 17, 192, y + 17);
