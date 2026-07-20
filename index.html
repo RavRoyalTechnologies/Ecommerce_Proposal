@@ -961,11 +961,9 @@
         const subtotalText = 'INR ' + Number(subtotal).toLocaleString('en-IN');
         const gstText = 'INR ' + Number(gst).toLocaleString('en-IN');
         
-        pdf.text('Subtotal', 124, y + 7);
-        pdf.text(subtotalText, 190, y + 7, { align: 'right' });
-        
-        pdf.text('GST (18%)', 124, y + 14);
-        pdf.text(gstText, 190, y + 14, { align: 'right' });
+        const subtotalText = 'INR ' + String(subtotal).replace(/[₹,]/g, '');
+        const gstText = 'INR ' + String(gst).replace(/[₹,]/g, '');
+        // const totalText = 'INR ' + String(total).replace(/[₹,]/g, '');
         
         // pdf.text('Subtotal', 124, y + 7);
         // pdf.text(subtotal, 190, y + 7, { align: 'right' });
