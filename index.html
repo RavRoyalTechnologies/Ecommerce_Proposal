@@ -126,7 +126,7 @@
 
         <div class="header-inner">
 
-            <img src="./logo.png.png" class="logo" alt="Logo">
+            <img src="./logo.png.png" id="companyLogo" class="logo" alt="Logo">
 
             <div class="company">
 
@@ -814,6 +814,17 @@
     
         pdf.setFillColor(6, 21, 47);
         pdf.rect(0, 0, pageWidth, 26, 'F');
+
+        // ===== LOGO ADD =====
+        const logo = document.getElementById('companyLogo');
+        if (logo && logo.complete) {
+            try {
+                // PNG logo add
+                pdf.addImage(logo, 'PNG', 10, 4, 18, 18);
+            } catch (e) {
+                console.log('Logo load error:', e);
+            }
+        }
     
         pdf.setTextColor(212, 175, 55);
         pdf.setFont('helvetica', 'bold');
@@ -906,7 +917,7 @@
     
             const price = isFree
                 ? 'FREE'
-                : '₹' + Number(priceInput.value || 0).toLocaleString('en-IN');
+                : 'Rs. ' + Number(priceInput.value || 0).toLocaleString('en-IN');
     
             // Alternate row background
             if (rowCount % 2 === 0) {
