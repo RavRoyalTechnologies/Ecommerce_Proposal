@@ -2,235 +2,108 @@
 // RAVROYAL QUOTATION SYSTEM
 // ==========================
 
-// Auto-save form data
-document.addEventListener('DOMContentLoaded', function () {
-
-    // Restore saved data
-    document.querySelectorAll('input, textarea').forEach(el => {
-        const key = el.name || el.id || el.placeholder;
-
-        if (key && localStorage.getItem(key)) {
-            if (el.type === 'checkbox') {
-                el.checked = localStorage.getItem(key) === 'true';
-            } else {
-                el.value = localStorage.getItem(key);
-            }
-        }
-
-        // Save on change
-        el.addEventListener('input', () => {
-            if (el.type === 'checkbox') {
-                localStorage.setItem(key, el.checked);
-            } else {
-                localStorage.setItem(key, el.value);
-            }
-        });
-    });
-
+document.addEventListener('DOMContentLoaded', () => {
+    attachEvents();
     updateTotal();
 });
 
-// ==========================
-// UPDATE TOTAL PRICE
-// ==========================
-function updateTotal() {
+// Format INR
+function formatINR(amount){
+    return '₹' + Number(amount).toLocaleString('en-IN');
+}
 
-    let total = 16000; // Base package
+// Attach all events
+function attachEvents(){
 
-    document.querySelectorAll('.module-checkbox').forEach(cb => {
-        if (cb.checked) {
-            total += parseInt(cb.dataset.price || 0);
-        }
+    // Checkbox
+    document.querySelectorAll('.item-check').forEach(el => {
+        el.addEventListener('change', updateTotal);
     });
 
-    document.getElementById('selectedTotal').innerText =
-        '₹' + total.toLocaleString('en-IN');
-}
-
-// Listen checkbox changes
-document.addEventListener('change', function (e) {
-    if (e.target.classList.contains('module-checkbox')) {
-        updateTotal();
-    }
-});
-
-// ==========================
-// GENERATE PDF
-// ==========================
-async function generatePDF() {
-
-    const { jsPDF } = window.jspdf;
-    const element = document.getElementById('quotationContainer');
-
-    // Hide buttons during capture
-    document.querySelector('.action-buttons').style.display = 'none';
-
-    const canvas = await html2canvas(element, {
-        scale: 2,
-        useCORS: true,
-        backgroundColor: '#ffffff'
+    // Price input
+    document.querySelectorAll('.item-price').forEach(el => {
+        el.addEventListener('input', updateTotal);
     });
 
-    document.querySelector('.action-buttons').style.display = 'flex';
+    // Free buttons
+    document.querySelectorAll('.free-btn').forEach(btn => {
+        btn.addEventListener('click', function(){
 
-    const imgData = canvas.toDataURL('image/png');
+            this.classList.toggle('active');
 
-    const pdf = new jsPDF('p', 'mm', 'a4');
+            if(this.classList.contains('active')){
+                this.innerText = 'FREE ✓';
+            }else{
+                this.innerText = 'FREE';
+            }
 
-    const pdfWidth = 210;
-    const pageHeight = 297;
-
-    const imgWidth = pdfWidth;
-    const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-    let heightLeft = imgHeight;
-    let position = 0;
-
-    pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-    heightLeft -= pageHeight;
-
-    while (heightLeft > 0) {
-        position = heightLeft - imgHeight;
-        pdf.addPage();
-        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
-    }
-
-    return pdf;
-}
-
-// ==========================
-// SAVE PDF ONLY
-// ==========================
-async function savePDFOnly() {
-
-    const business =
-        document.getElementById('businessName').value || 'Quotation';
-
-    const pdf = await generatePDF();
-
-    const fileName =
-        'RavRoyal_' + business.replace(/[^a-zA-Z0-9]/g, '_') + '.pdf';
-
-    pdf.save(fileName);
-
-    alert('PDF downloaded successfully!');
-}
-
-// ==========================
-// SAVE + WHATSAPP
-// ==========================
-async function saveAndWhatsApp() {
-
-    const btn = document.getElementById('whatsappBtn');
-    btn.innerText = 'Generating PDF...';
-    btn.disabled = true;
-
-    try {
-
-        // Get form values
-        const business = document.getElementById('businessName').value;
-        const owner = document.getElementById('ownerName').value;
-        const mobile = document.getElementById('mobileNumber').value;
-        const email = document.getElementById('emailAddress').value;
-        const domain = document.getElementById('domainName').value;
-        const orders = document.getElementById('orderVolume').value;
-        const requirements = document.getElementById('requirements').value;
-
-        // Selected modules
-        let modules = [];
-
-        document.querySelectorAll('.module-checkbox:checked').forEach(cb => {
-            const row = cb.closest('.module-row');
-            const name = row.querySelector('.module-name').innerText;
-            const price = row.querySelector('.module-price').innerText;
-            modules.push('• ' + name + ' (' + price + ')');
+            updateTotal();
         });
+    });
 
-        // Generate and download PDF
-        const pdf = await generatePDF();
-
-        const fileName =
-            'RavRoyal_' + (business || 'Quotation').replace(/[^a-zA-Z0-9]/g, '_') + '.pdf';
-
-        pdf.save(fileName);
-
-        // WhatsApp message
-        const message = `
-🏢 *NEW E-COMMERCE QUOTATION*
-
-📌 Business: ${business}
-👤 Owner: ${owner}
-📞 Mobile: ${mobile}
-✉ Email: ${email}
-🌐 Domain: ${domain}
-📦 Expected Orders: ${orders}
-
-🧩 *Selected Modules:*
-${modules.length ? modules.join('\\n') : 'Base Package Only'}
-
-📝 *Requirements:*
-${requirements || 'No additional requirements'}
-
-💰 *RavRoyal Proposal*
-• Initial Setup: ₹16,000
-• Monthly Support: ₹3,000
-• Delivery: 7 Days
-• First Month Small Customization: FREE
-
-📎 PDF has been downloaded automatically.
-Please attach the downloaded PDF from your Downloads folder and send it.
-        `.trim();
-
-        // Open WhatsApp
-        const whatsappNumber = '917898970831';
-
-        const whatsappURL =
-            'https://wa.me/' + whatsappNumber + '?text=' +
-            encodeURIComponent(message);
-
-        // Delay so download starts first
-        setTimeout(() => {
-            window.open(whatsappURL, '_blank');
-        }, 800);
-
-        // Success popup
-        setTimeout(() => {
-            alert(
-                'PDF downloaded successfully! WhatsApp has been opened with all quotation details.'
-            );
-        }, 1200);
-
-    } catch (err) {
-
-        console.error(err);
-        alert('Failed to generate PDF.');
-
-    } finally {
-
-        btn.innerText = 'Save PDF & Send WhatsApp';
-        btn.disabled = false;
-    }
+    // Full quotation free
+    document.getElementById('fullFree')
+        .addEventListener('change', updateTotal);
 }
 
 // ==========================
-// CLEAR FORM
+// CALCULATION
 // ==========================
-function clearForm() {
+function updateTotal(){
 
-    if (!confirm('Clear all saved form data?')) return;
+    let subtotal = 0;
 
-    localStorage.clear();
+    document.querySelectorAll('.quotation-row').forEach(row => {
 
-    document.querySelectorAll('input, textarea').forEach(el => {
-        if (el.type === 'checkbox') {
-            el.checked = false;
-        } else {
-            el.value = '';
+        const check = row.querySelector('.item-check');
+        const priceInput = row.querySelector('.item-price');
+        const freeBtn = row.querySelector('.free-btn');
+        const totalCell = row.querySelector('.item-total');
+
+        let price = parseFloat(priceInput.value) || 0;
+        let itemTotal = 0;
+
+        if(check.checked && !freeBtn.classList.contains('active')){
+            itemTotal = price;
+            subtotal += itemTotal;
         }
+
+        totalCell.innerText = formatINR(itemTotal);
     });
 
-    updateTotal();
+    // GST 18%
+    let gst = subtotal * 0.18;
+    let grandTotal = subtotal + gst;
 
-    alert('Form cleared successfully.');
+    // Full quotation FREE
+    if(document.getElementById('fullFree').checked){
+        subtotal = 0;
+        gst = 0;
+        grandTotal = 0;
+    }
+
+    document.getElementById('subtotal').innerText =
+        formatINR(Math.round(subtotal));
+
+    document.getElementById('gstAmount').innerText =
+        formatINR(Math.round(gst));
+
+    document.getElementById('grandTotal').innerText =
+        formatINR(Math.round(grandTotal));
+}
+
+// ==========================
+// PRINT / PDF
+// ==========================
+function printQuotation(){
+
+    // Hide print button while printing
+    document.getElementById('printBtn').style.display = 'none';
+
+    window.print();
+
+    // Show button again
+    setTimeout(() => {
+        document.getElementById('printBtn').style.display = 'inline-block';
+    }, 500);
 }
