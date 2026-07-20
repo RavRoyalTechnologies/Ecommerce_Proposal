@@ -8,6 +8,89 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+    <style>
+        /* =========================
+           PREMIUM COMPACT HEADER
+        ========================= */
+        
+        .header{
+            padding:16px 24px !important;
+        }
+        
+        .header-inner{
+            gap:16px !important;
+        }
+        
+        .logo{
+            width:70px !important;
+            height:70px !important;
+        }
+        
+        .company h1{
+            font-size:1.25rem !important;
+            margin-bottom:4px !important;
+            line-height:1.2 !important;
+        }
+        
+        .company p{
+            font-size:12px !important;
+            line-height:1.4 !important;
+            margin:0 !important;
+        }
+        
+        /* Compact content spacing */
+        .content{
+            padding:22px !important;
+        }
+        
+        .section-title{
+            font-size:1.2rem !important;
+            margin-bottom:14px !important;
+        }
+        
+        .quotation-row{
+            padding:10px 14px !important;
+            gap:10px !important;
+        }
+        
+        .quotation-row strong{
+            font-size:14px;
+        }
+        
+        .quotation-row span{
+            line-height:1.3;
+        }
+        
+        /* Summary compact */
+        .summary{
+            padding:16px !important;
+            margin-top:18px !important;
+        }
+        
+        .summary-row{
+            padding:8px 0 !important;
+        }
+        
+        .grand{
+            font-size:1.15rem !important;
+        }
+        
+        /* Signatures smaller */
+        .signatures{
+            margin-top:24px !important;
+            gap:24px !important;
+        }
+        
+        .sign-line{
+            margin-top:36px !important;
+        }
+        
+        /* Footer compact */
+        .footer{
+            padding:12px !important;
+            font-size:12px !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -529,6 +612,10 @@
         <div class="action">
             <button class="print-btn" id="printBtn" onclick="printQuotation()">
                 🖨 Print / Save as PDF
+            </button>
+
+            <button class="print-btn" id="downloadBtn" onclick="downloadProposalPDF()">
+                📄 Download Premium Proposal PDF
             </button>
         </div>
 
