@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<link rel="icon" type="image/x-icon" href="./logo.png.png">
 <title>RavRoyal Technology - Quotation</title>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
     <style>
@@ -89,6 +91,28 @@
         .footer{
             padding:12px !important;
             font-size:12px !important;
+        }
+
+        /* Hide unchecked rows while printing */
+        @media print{
+        
+            .quotation-row:has(.item-check:not(:checked)){
+                display:none !important;
+            }
+        
+            .print-btn,
+            .action{
+                display:none !important;
+            }
+        
+            body{
+                zoom:92%;
+            }
+        
+            .container{
+                box-shadow:none !important;
+                border-radius:0 !important;
+            }
         }
     </style>
 </head>
@@ -628,7 +652,117 @@
     </div>
 
 </div>
-
+<script>
+    // ==========================
+    // PREMIUM PROPOSAL PDF
+    // ==========================
+    async function downloadProposalPDF(){
+    
+        const { jsPDF } = window.jspdf;
+    
+        // Hide unchecked rows
+        const hiddenRows = [];
+    
+        document.querySelectorAll('.quotation-row').forEach(row => {
+    
+            const checkbox = row.querySelector('.item-check');
+    
+            if(!checkbox.checked){
+                row.style.display = 'none';
+                hiddenRows.push(row);
+            }
+        });
+    
+        // Hide download button
+        const btn = document.getElementById('downloadBtn');
+        btn.style.display = 'none';
+    
+        // Create canvas
+        const element = document.querySelector('.container');
+    
+        const canvas = await html2canvas(element,{
+            scale:2,
+            useCORS:true,
+            backgroundColor:'#ffffff'
+        });
+    
+        // Restore hidden rows
+        hiddenRows.forEach(row => {
+            row.style.display = 'grid';
+        });
+    
+        // Restore button
+        btn.style.display = 'inline-block';
+    
+        // Create PDF
+        const pdf = new jsPDF({
+            orientation:'p',
+            unit:'mm',
+            format:'a4'
+        });
+    
+        const pageWidth = 210;
+        const pageHeight = 297;
+    
+        // Premium margins
+        const margin = 8;
+        const usableWidth = pageWidth - margin * 2;
+        const usableHeight = pageHeight - margin * 2;
+    
+        const imgWidth = usableWidth;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+    
+        const imgData = canvas.toDataURL('image/jpeg', 0.92);
+    
+        // If content fits in one page
+        if(imgHeight <= usableHeight){
+    
+            const y = (pageHeight - imgHeight) / 2;
+    
+            pdf.addImage(
+                imgData,
+                'JPEG',
+                margin,
+                y,
+                imgWidth,
+                imgHeight,
+                '',
+                'FAST'
+            );
+    
+        }else{
+    
+            // Scale to fit one page
+            const scale = usableHeight / imgHeight;
+            const finalWidth = imgWidth * scale;
+            const finalHeight = imgHeight * scale;
+            const x = (pageWidth - finalWidth) / 2;
+    
+            pdf.addImage(
+                imgData,
+                'JPEG',
+                x,
+                margin,
+                finalWidth,
+                finalHeight,
+                '',
+                'FAST'
+            );
+        }
+    
+        // File name
+        const business =
+            document.querySelector('input[placeholder*="business"]')?.value
+            || 'Client';
+    
+        const fileName =
+            'RavRoyal_Proposal_' +
+            business.replace(/[^a-zA-Z0-9]/g,'_') +
+            '.pdf';
+    
+        pdf.save(fileName);
+    }
+</script>
 <script src="script.js"></script>
 
 </body>
