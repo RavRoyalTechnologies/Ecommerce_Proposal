@@ -788,15 +788,27 @@
             document.getElementById('emailAddress').value || '';
     
         // Get totals
-        const subtotal =
-            document.getElementById('subtotal')?.innerText || '₹0';
+        // const subtotal =
+        //     document.getElementById('subtotal')?.innerText || '₹0';
     
-        const gst =
-            document.getElementById('gstAmount')?.innerText || '₹0';
+        // const gst =
+        //     document.getElementById('gstAmount')?.innerText || '₹0';
     
-        const grand =
+        // const grand =
+        //     document.getElementById('grandTotal')?.innerText ||
+        //     document.getElementById('selectedTotal').innerText;
+        // Get totals and remove ₹, commas, spaces
+        const subtotalRaw = document.getElementById('subtotal')?.innerText || '0';
+        const gstRaw = document.getElementById('gstAmount')?.innerText || '0';
+        const grandRaw =
             document.getElementById('grandTotal')?.innerText ||
-            document.getElementById('selectedTotal').innerText;
+            document.getElementById('selectedTotal')?.innerText ||
+            '0';
+        
+        // Convert to numbers safely
+        const subtotal = parseFloat(subtotalRaw.replace(/[^\d.]/g, '')) || 0;
+        const gst = parseFloat(gstRaw.replace(/[^\d.]/g, '')) || 0;
+        const grand = parseFloat(grandRaw.replace(/[^\d.]/g, '')) || 0;
     
         // Create PDF
         const pdf = new jsPDF({
@@ -958,28 +970,28 @@
         pdf.setFontSize(9);
 
         // Format amount without ₹ symbol
-        const subtotalText = 'INR ' + Number(subtotal).toLocaleString('en-IN');
-        const gstText = 'INR ' + Number(gst).toLocaleString('en-IN');
-        
-        const subtotalText = 'INR ' + String(subtotal).replace(/[₹,]/g, '');
-        const gstText = 'INR ' + String(gst).replace(/[₹,]/g, '');
-        // const totalText = 'INR ' + String(total).replace(/[₹,]/g, '');
-        
-        // pdf.text('Subtotal', 124, y + 7);
-        // pdf.text(subtotal, 190, y + 7, { align: 'right' });
-    
-        // pdf.text('GST (18%)', 124, y + 14);
-        // pdf.text(gst, 190, y + 14, { align: 'right' });
-    
+        // const subtotalText = 'INR ' + Number(subtotal).toLocaleString('en-IN');
+        // const gstText = 'INR ' + Number(gst).toLocaleString('en-IN');
+        const subtotalText = 'INR ' + subtotal.toLocaleString('en-IN');
+        const gstText = 'INR ' + gst.toLocaleString('en-IN');
+        const grandText = 'INR ' + grand.toLocaleString('en-IN');
+
         pdf.setDrawColor(180, 180, 180);
         pdf.line(122, y + 17, 192, y + 17);
     
         pdf.setFont('helvetica', 'bold');
         pdf.setFontSize(11);
         pdf.setTextColor(6, 21, 47);
+
+        pdf.text('Subtotal', 124, y + 7);
+        pdf.text(subtotalText, 190, y + 7, { align: 'right' });
+        
+        // GST
+        pdf.text('GST (18%)', 124, y + 14);
+        pdf.text(gstText, 190, y + 14, { align: 'right' });
     
         pdf.text('Grand Total', 124, y + 24);
-        pdf.text(grand, 190, y + 24, { align: 'right' });
+        pdf.text(grandText, 190, y + 24, { align: 'right' });
     
         y += 42;
     
