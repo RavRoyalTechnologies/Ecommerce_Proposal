@@ -998,7 +998,15 @@
         pdf.text(subtotalText, 190, y + 7, { align: 'right' });
         
         // GST
-        pdf.text('GST (18%)', 124, y + 14);
+        // pdf.text('GST (18%)', 124, y + 14);
+        const gstOption = document.getElementById('gstOption').value;
+
+        const gstLabel =
+            gstOption === 'apply'
+                ? 'GST (18%)'
+                : 'GST (Not Applied)';
+        
+        // pdf.text(gstLabel, 124, y + 14);
         pdf.text(gstText, 190, y + 14, { align: 'right' });
     
         pdf.text('Grand Total', 124, y + 24);
