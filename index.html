@@ -810,7 +810,13 @@
         //     document.getElementById('selectedTotal').innerText;
         // Get totals and remove ₹, commas, spaces
         const subtotalRaw = document.getElementById('subtotal')?.innerText || '0';
-        const gstRaw = document.getElementById('gstAmount')?.innerText || '0';
+        const gstOption =
+    document.getElementById('gstOption')?.value || 'apply';
+        const gstRaw =
+    gstOption === 'apply'
+        ? (document.getElementById('gstAmount')?.innerText || '0')
+        : '0';
+        // const gstRaw = document.getElementById('gstAmount')?.innerText || '0';
         const grandRaw =
             document.getElementById('grandTotal')?.innerText ||
             document.getElementById('selectedTotal')?.innerText ||
@@ -973,8 +979,12 @@
     
         y += 6;
     
+        const totalsBoxHeight =
+        gstOption === 'apply' ? 26 : 20;
+        
+        pdf.roundedRect(118, y, 78, totalsBoxHeight, 3, 3, 'F');
         pdf.setFillColor(250, 251, 255);
-        pdf.roundedRect(118, y, 78, 26, 3, 3, 'F');
+        // pdf.roundedRect(118, y, 78, 26, 3, 3, 'F');
     
         pdf.setTextColor(31, 41, 55);
         pdf.setFont('helvetica', 'normal');
@@ -999,18 +1009,40 @@
         
         // GST
         // pdf.text('GST (18%)', 124, y + 14);
-        const gstOption = document.getElementById('gstOption').value;
+        // let gstOption = document.getElementById('gstOption').value;
 
-        const gstLabel =
-            gstOption === 'apply'
-                ? 'GST (18%)'
-                : 'GST (Not Applied)';
+        // let gstLabel =
+        //     gstOption === 'apply'
+        //         ? 'GST (18%)'
+        //         : 'GST (Not Applied)';
         
         // pdf.text(gstLabel, 124, y + 14);
-        pdf.text(gstText, 190, y + 14, { align: 'right' });
+        // pdf.text(gstText, 190, y + 14, { align: 'right' });
+
+        // GST only if applied
+        if (gstOption === 'apply') {
+        
+            pdf.text('GST (18%)', 124, y + 14);
+            pdf.text(gstText, 190, y + 14, { align: 'right' });
+        
+            pdf.setDrawColor(180, 180, 180);
+            pdf.line(122, y + 17, 192, y + 17);
+        
+            pdf.text('Grand Total', 124, y + 24);
+            pdf.text(grandText, 190, y + 24, { align: 'right' });
+        
+        } else {
+        
+            // No GST row
+            pdf.setDrawColor(180, 180, 180);
+            pdf.line(122, y + 11, 192, y + 11);
+        
+            pdf.text('Grand Total', 124, y + 18);
+            pdf.text(grandText, 190, y + 18, { align: 'right' });
+        }
     
-        pdf.text('Grand Total', 124, y + 24);
-        pdf.text(grandText, 190, y + 24, { align: 'right' });
+        // pdf.text('Grand Total', 124, y + 24);
+        // pdf.text(grandText, 190, y + 24, { align: 'right' });
     
         y += 42;
     
