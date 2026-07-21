@@ -979,20 +979,32 @@
     
         y += 6;
     
-        const totalsBoxHeight =
-        gstOption === 'apply' ? 26 : 20;
+        // const totalsBoxHeight =
+        // gstOption === 'apply' ? 26 : 20;
         
-        pdf.roundedRect(118, y, 78, totalsBoxHeight, 3, 3, 'F');
-        pdf.setFillColor(250, 251, 255);
+        // pdf.roundedRect(118, y, 78, totalsBoxHeight, 3, 3, 'F');
+        // pdf.setFillColor(250, 251, 255);
         // pdf.roundedRect(118, y, 78, 26, 3, 3, 'F');
     
-        pdf.setTextColor(31, 41, 55);
-        pdf.setFont('helvetica', 'normal');
-        pdf.setFontSize(9);
+        // pdf.setTextColor(31, 41, 55);
+        // pdf.setFont('helvetica', 'normal');
+        // pdf.setFontSize(9);
 
         // Format amount without ₹ symbol
         // const subtotalText = 'INR ' + Number(subtotal).toLocaleString('en-IN');
         // const gstText = 'INR ' + Number(gst).toLocaleString('en-IN');
+
+        const totalsBoxHeight = gstOption === 'apply' ? 26 : 20;
+
+        // Dark premium background
+        pdf.setFillColor(6, 21, 47);
+        pdf.roundedRect(118, y, 78, totalsBoxHeight, 3, 3, 'F');
+        
+        // White text
+        pdf.setTextColor(255, 255, 255);
+        pdf.setFont('helvetica', 'bold');
+        pdf.setFontSize(10);
+        
         const subtotalText = 'INR ' + subtotal.toLocaleString('en-IN');
         const gstText = 'INR ' + gst.toLocaleString('en-IN');
         const grandText = 'INR ' + grand.toLocaleString('en-IN');
