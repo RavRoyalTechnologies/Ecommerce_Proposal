@@ -589,9 +589,20 @@
                 <span id="subtotal">₹16,000</span>
             </div>
 
-            <div class="summary-row">
+            <!-- <div class="summary-row">
                 <span>GST (18%)</span>
                 <span id="gstAmount">₹2,880</span>
+            </div> -->
+
+            <div class="summary-row" style="align-items:center;gap:12px;flex-wrap:wrap;">
+                <span>GST (18%)</span>
+            
+                <select id="gstOption" style="padding:6px 10px;border-radius:8px;border:1px solid #ccc;">
+                    <option value="apply" selected>Apply GST</option>
+                    <option value="not_apply">Not Apply</option>
+                </select>
+            
+                <span id="gstAmount" style="margin-left:auto;">₹2,880</span>
             </div>
 
             <div class="summary-row grand">
