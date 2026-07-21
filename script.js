@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
     updateTotal();
 });
 
+document.getElementById('gstOption')
+    .addEventListener('change', calculateTotal);
+
 // Format INR
 function formatINR(amount){
     return '₹' + Number(amount).toLocaleString('en-IN');
@@ -72,7 +75,15 @@ function updateTotal(){
     });
 
     // GST 18%
-    let gst = subtotal * 0.18;
+    // let gst = subtotal * 0.18;
+    let gstOption = document.getElementById('gstOption').value;
+
+    let gst = 0;
+
+    if (gstOption === 'apply') {
+        gst = subtotal * 0.18;
+    }
+
     let grandTotal = subtotal + gst;
 
     // Full quotation FREE
