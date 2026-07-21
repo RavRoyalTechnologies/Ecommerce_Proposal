@@ -1019,14 +1019,16 @@
         // pdf.text(gstLabel, 124, y + 14);
         // pdf.text(gstText, 190, y + 14, { align: 'right' });
 
+        pdf.setDrawColor(255, 255, 255);
+        
         // GST only if applied
         if (gstOption === 'apply') {
         
+            // pdf.setDrawColor(180, 180, 180);
+            pdf.line(122, y + 17, 192, y + 17);
+            
             pdf.text('GST (18%)', 124, y + 14);
             pdf.text(gstText, 190, y + 14, { align: 'right' });
-        
-            pdf.setDrawColor(180, 180, 180);
-            pdf.line(122, y + 17, 192, y + 17);
         
             pdf.text('Grand Total', 124, y + 24);
             pdf.text(grandText, 190, y + 24, { align: 'right' });
@@ -1034,7 +1036,7 @@
         } else {
         
             // No GST row
-            pdf.setDrawColor(180, 180, 180);
+            // pdf.setDrawColor(180, 180, 180);
             pdf.line(122, y + 11, 192, y + 11);
         
             pdf.text('Grand Total', 124, y + 18);
