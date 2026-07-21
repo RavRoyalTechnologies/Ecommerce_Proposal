@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.getElementById('gstOption')
-    .addEventListener('change', calculateTotal);
+    .addEventListener('change', updateTotal);
 
 // Format INR
 function formatINR(amount){
