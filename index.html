@@ -994,7 +994,8 @@
         // const subtotalText = 'INR ' + Number(subtotal).toLocaleString('en-IN');
         // const gstText = 'INR ' + Number(gst).toLocaleString('en-IN');
 
-        const totalsBoxHeight = gstOption === 'apply' ? 26 : 20;
+        // const totalsBoxHeight = gstOption === 'apply' ? 26 : 20;
+        const totalsBoxHeight = gstOption === 'apply' ? 26 : 18;
 
         // Dark premium background
         pdf.setFillColor(6, 21, 47);
@@ -1045,7 +1046,8 @@
         
             // No GST row
             // pdf.setDrawColor(180, 180, 180);
-            pdf.line(122, y + 11, 192, y + 11);
+            // pdf.line(122, y + 11, 192, y + 11);
+            pdf.line(122, y + 9, 192, y + 9);
         
             pdf.text('Grand Total', 124, y + 18);
             pdf.text(grandText, 190, y + 18, { align: 'right' });
